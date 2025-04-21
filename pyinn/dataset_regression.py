@@ -91,7 +91,7 @@ class Data_regression(Dataset):
                 
             except FileNotFoundError:
                 print(F"Data file {data_file} dose not exist. We will create the data.")
-                exit(1)
+                # exit(1)
                 data_generation_regression(data_name, self.data_size, self.input_col)
                 data = np.loadtxt(data_file, delimiter=",", dtype=np.float64, skiprows=1)
         
@@ -235,7 +235,7 @@ vv_fun_1D_1D_exp = jax.vmap(v_fun_1D_1D_exp, in_axes = (0)) # output: (ndata, nd
 
 
 def fun_1D_1D_sine(x_data_org):
-    u_data_org =  jnp.sin(2*jnp.pi*x_data_org)
+    u_data_org =  jnp.sin(10 * jnp.pi *x_data_org)
     return u_data_org.reshape(1,)
 v_fun_1D_1D_sine = jax.vmap(fun_1D_1D_sine, in_axes = (0)) # output: (ndata, )
 vv_fun_1D_1D_sine = jax.vmap(v_fun_1D_1D_sine, in_axes = (0)) # output: (ndata, ndata)

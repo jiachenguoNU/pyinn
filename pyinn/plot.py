@@ -97,13 +97,20 @@ def plot_1D_1D(model, cls_data, plot_in_axis, plot_out_axis):
     ax1 = fig.add_subplot(gs[0])
     # plt.subplots_adjust(wspace=0.4)  # Increase the width space between subplots
 
-    ax1.plot(x_nds, U_exact, '-', color='k', linewidth = 4,  label='Original function')
-    ax1.plot(x_nds, U_pred, '-', color='g', linewidth = 4,  label='Prediction')
+    ax1.plot(x_nds, U_exact, '-', color='k', linewidth = 5,  label='Original function')
+    ax1.plot(x_nds, U_pred, '--', color='r', linewidth = 2,  label='INN-TD approximation')
     ax1.set_xlabel(fr"$x_{str(plot_in_axis[0]+1)}$", fontsize=16)
     ax1.set_ylabel(fr"$u_{str(plot_out_axis[0]+1)}$", fontsize=16)
     ax1.tick_params(axis='both', labelsize=12)
     # ax1.set_title('INN prediction', fontsize=16)
-    ax1.legend(shadow=True, borderpad=1, fontsize=14, loc='best')
+    ax1.legend(
+    shadow=True, 
+    borderpad=1, 
+    fontsize=14, 
+    loc='upper center',    # Position at the upper center
+    bbox_to_anchor=(0.5, 1.45), # Adjust the position anchor point (x, y)
+    ncol=2 # Number of columns in the legend if you have many items
+)
     plt.tight_layout()
 
     parent_dir = os.path.abspath(os.getcwd())
